@@ -1,0 +1,83 @@
+/* Import des feuilles de style */
+@import "unity/unity.scss";
+
+/* Import des polices */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Annonce des couleurs */
+$jaune: #F3E9F1;
+
+/* Annonce des valeurs */
+$valeur-arrondis: 30px;
+
+/* Généralités HTML : */
+body{font-family: 'Lato', sans-serif;}
+h1{ margin: 0 0 3rem; text-align: center;}
+
+header{display: flex; padding: 0 2rem; background-color: $jaune;
+    a:first-child{width: 200px;}
+    nav{@extend .flex; align-items: center; margin-left: auto;
+        ul{display: flex;
+            li{margin: 0 2rem;}
+        }
+    }
+}
+
+/* Composants */
+.bouton{ display: block; margin: auto; max-width: 150px; padding: 1rem; border-radius: 30px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+    background-color: rosybrown; text-align: center; transition: 0.2s;
+    &:hover{transform: scale(1.05);}
+}
+
+main{padding-top: 3rem;}
+
+main.liste-produits{
+    section{ @extend .flex; flex-wrap: wrap; padding: 0 1rem;
+        article{ max-width: 300px; margin: 0 auto 3rem; border-radius: $valeur-arrondis; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); background-color: $jaune;
+            a{ @extend .block;
+                img{border-top-left-radius: $valeur-arrondis; border-top-right-radius: $valeur-arrondis;}
+                .description-produit{padding: 1rem;
+                    strong{@extend .block; @extend .alignerDroite;}
+                }
+            }
+        }
+    } 
+}
+
+/* Page produit */
+main.page-produit{
+    section{
+        article{
+            img{max-width: 300px; margin: 0 auto 3rem;}
+            .description-produit{
+                h2{margin-bottom: 2rem;}
+                ul{display: flex; flex-wrap: wrap; justify-content: center;
+                    li{margin: 0 2rem 2rem;}
+                }
+                strong{display: block; margin-bottom: 2rem; text-align: center; font-size: 2.2rem;}
+            }
+        }
+
+        a{ @extend .bouton;}
+
+        @media(min-width: 800px){
+            article{ display: flex;
+                img{margin-right: 2rem; max-width: 40%;}
+                .description-produit{ position: relative;
+                    strong{position: absolute; width: 100%; bottom: 0; text-align: right;}
+                }
+            }
+        }
+    } 
+}
+
+/* Page panier */
+.page-panier{
+    section{
+        article .description-produit{display: flex; align-items: center; background-color: $jaune;
+            & > * {margin-right: 4rem;}
+            img{max-width: 150px;}
+        }
+        a{@extend .bouton; margin-top: 2rem;}
+    }
+}

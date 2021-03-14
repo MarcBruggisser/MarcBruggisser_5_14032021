@@ -1,0 +1,40 @@
+// Annonce des taille d'écrans
+$smartphone-breakpoint:600px;
+$tablettePortrait-breakpoint:800px;
+$tablette-breakpoint:980px;
+$desktop-breakpoint:1180px;
+
+// *{outline: none;}
+body{margin: 0;}
+section{padding: 1rem;}
+h1, h2, h3{margin: 0;}
+ul{list-style: none; padding: 0; margin: 0;}
+a{text-decoration: none;}
+img{max-width: 100%; @extend .block;}
+
+
+// Annonce des classes de mise en forme pour les composants
+// Annonce des display et des positions
+.block{display: block;}
+.cacher{display: none;}
+.inline-block{display: inline-block;}
+.flex{display: flex; flex-wrap: wrap;}
+
+.relative{position: relative;}
+.absolute{position: absolute;}
+.fixed{position: fixed;}
+
+.alignerGauche{text-align: left;}
+.alignerCentre{text-align: center;}
+.alignerDroite{text-align: right;}
+
+.wrapper{max-width: $smartphone-breakpoint; margin: auto;
+    @media(min-width: $tablettePortrait-breakpoint){max-width: $tablettePortrait-breakpoint;}
+    @media(min-width: $tablette-breakpoint){max-width: $tablette-breakpoint;}
+    @media(min-width: $desktop-breakpoint){max-width: $desktop-breakpoint;}
+}
+
+
+
+// Annonce des animations
+.animer{transition: 0.5s;}
