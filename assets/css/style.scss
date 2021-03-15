@@ -1,8 +1,46 @@
-/* Import des feuilles de style */
-@import "unity/unity.scss";
-
 /* Import des polices */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// Annonce des taille d'écrans
+$smartphone-breakpoint:600px;
+$tablettePortrait-breakpoint:800px;
+$tablette-breakpoint:980px;
+$desktop-breakpoint:1180px;
+
+// *{outline: none;}
+body{margin: 0;}
+section{padding: 1rem;}
+h1, h2, h3{margin: 0;}
+ul{list-style: none; padding: 0; margin: 0;}
+a{text-decoration: none; color: black;}
+img{max-width: 100%; @extend .block;}
+
+
+// Annonce des classes de mise en forme pour les composants
+// Annonce des display et des positions
+.block{display: block;}
+.cacher{display: none;}
+.inline-block{display: inline-block;}
+.flex{display: flex; flex-wrap: wrap;}
+
+.relative{position: relative;}
+.absolute{position: absolute;}
+.fixed{position: fixed;}
+
+.alignerGauche{text-align: left;}
+.alignerCentre{text-align: center;}
+.alignerDroite{text-align: right;}
+
+.wrapper{max-width: $smartphone-breakpoint; margin: auto;
+    @media(min-width: $tablettePortrait-breakpoint){max-width: $tablettePortrait-breakpoint;}
+    @media(min-width: $tablette-breakpoint){max-width: $tablette-breakpoint;}
+    @media(min-width: $desktop-breakpoint){max-width: $desktop-breakpoint;}
+}
+
+
+
+// Annonce des animations
+.animer{transition: 0.5s;}
 
 /* Annonce des couleurs */
 $jaune: #F3E9F1;
@@ -12,7 +50,17 @@ $valeur-arrondis: 30px;
 
 /* Généralités HTML : */
 body{font-family: 'Lato', sans-serif;}
-h1{ margin: 0 0 3rem; text-align: center;}
+h1{ margin: 0 0 3rem; text-align: center; font-size: 3rem;}
+
+/* Class internes */
+.article-produit{width: 100%; max-width: 300px; margin: 0 auto 3rem; border-radius: $valeur-arrondis; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); background-color: $jaune;
+    a{ @extend .block;
+        img{border-top-left-radius: $valeur-arrondis; border-top-right-radius: $valeur-arrondis;}
+        .description-produit{padding: 1rem;
+            strong{@extend .block; @extend .alignerDroite;}
+        }
+    }
+}
 
 header{display: flex; padding: 0 2rem; background-color: $jaune;
     a:first-child{width: 200px;}
@@ -33,13 +81,8 @@ main{padding-top: 3rem;}
 
 main.liste-produits{
     section{ @extend .flex; flex-wrap: wrap; padding: 0 1rem;
-        article{ max-width: 300px; margin: 0 auto 3rem; border-radius: $valeur-arrondis; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); background-color: $jaune;
-            a{ @extend .block;
-                img{border-top-left-radius: $valeur-arrondis; border-top-right-radius: $valeur-arrondis;}
-                .description-produit{padding: 1rem;
-                    strong{@extend .block; @extend .alignerDroite;}
-                }
-            }
+        article{ @extend .article-produit;
+            
         }
     } 
 }
@@ -58,8 +101,7 @@ main.page-produit{
             }
         }
 
-        a{ @extend .bouton;}
-
+        
         @media(min-width: 800px){
             article{ display: flex;
                 img{margin-right: 2rem; max-width: 40%;}
@@ -69,6 +111,7 @@ main.page-produit{
             }
         }
     } 
+    a{ @extend .bouton;}
 }
 
 /* Page panier */

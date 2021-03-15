@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* Import des feuilles de style */
+/* Import des polices */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 body {
   margin: 0;
@@ -21,13 +21,14 @@ ul {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 img {
   max-width: 100%;
 }
 
-.block, img, main.liste-produits section article a, main.liste-produits section article a .description-produit strong {
+.block, img, .article-produit a, main.liste-produits section article a, .article-produit a .description-produit strong, main.liste-produits section article a .description-produit strong {
   display: block;
 }
 
@@ -67,7 +68,7 @@ img {
   text-align: center;
 }
 
-.alignerDroite, main.liste-produits section article a .description-produit strong {
+.alignerDroite, .article-produit a .description-produit strong, main.liste-produits section article a .description-produit strong {
   text-align: right;
 }
 
@@ -99,7 +100,6 @@ img {
   transition: 0.5s;
 }
 
-/* Import des polices */
 /* Annonce des couleurs */
 /* Annonce des valeurs */
 /* Généralités HTML : */
@@ -110,6 +110,27 @@ body {
 h1 {
   margin: 0 0 3rem;
   text-align: center;
+  font-size: 3rem;
+}
+
+/* Class internes */
+.article-produit, main.liste-produits section article {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 3rem;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: #F3E9F1;
+}
+
+.article-produit a img, main.liste-produits section article a img {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.article-produit a .description-produit, main.liste-produits section article a .description-produit {
+  padding: 1rem;
 }
 
 header {
@@ -142,7 +163,7 @@ header nav ul li {
 }
 
 /* Composants */
-.bouton, main.page-produit section a, .page-panier section a {
+.bouton, main.page-produit a, .page-panier section a {
   display: block;
   margin: auto;
   max-width: 150px;
@@ -156,7 +177,7 @@ header nav ul li {
   transition: 0.2s;
 }
 
-.bouton:hover, main.page-produit section a:hover, .page-panier section a:hover {
+.bouton:hover, main.page-produit a:hover, .page-panier section a:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -169,24 +190,6 @@ main.liste-produits section {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 0 1rem;
-}
-
-main.liste-produits section article {
-  max-width: 300px;
-  margin: 0 auto 3rem;
-  border-radius: 30px;
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  background-color: #F3E9F1;
-}
-
-main.liste-produits section article a img {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-
-main.liste-produits section article a .description-produit {
-  padding: 1rem;
 }
 
 /* Page produit */
