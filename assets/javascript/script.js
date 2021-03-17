@@ -38,7 +38,47 @@ fetch('http://localhost:3000/api/cameras',myInit)
         nouveauProduit.innerHTML = '<img src="' + all['imageUrl'] +' " alt=""><div class="description-produit"><p>' + all['description'] + '</p><ul><li>' + all['lenses'] + '</ul><strong>' + all['price'] + ' €' + '</strong></div>';
         document.querySelector(".page-produit section").appendChild(nouveauProduit);  
       }
-    } 
+    }
+
+    /* On récupère le bouton "Ajouter au panier" */
+    let boutonAjouterAuPanier = document.querySelector('.ajout-panier');
+
+    /* Si l'utilisateur appuie sur le bouton "Ajouter au panier", on le prévient que son produit a été ajouté */
+    function messageAjoutPanier () {
+      let messageAjout = document.createElement('p');
+      messageAjout.textContent = 'Votre produit a été ajouté au panier !'
+      boutonAjouterAuPanier.insertAdjacentElement('afterend', messageAjout);
+    }
+    boutonAjouterAuPanier.addEventListener("click", messageAjoutPanier)
+  }
+
+  /* Sur la page panier */
+  if(main.classList.contains('page-panier')){
+    
+    
+    /* Indiquer un message si le panier est vide : */
+    
+    /* On récupère l'élément section */
+    let section = document.querySelector('section');
+    /* On vérifie que l'élément ait des éléments enfants (retourne une valeur booléene) */
+    let sectionHasChildren = section.hasChildNodes();
+    /* Si le panier ne possède aucun produit, alors on n'indique au client que le panier n'en possède pas */
+    if(sectionHasChildren === false){
+      let paragrapheErreur = document.createElement("p");
+      paragrapheErreur.classList.add('paragraphe-erreur');  
+      paragrapheErreur.textContent = "Il n'y a pour l'instant aucun produit à l'intérieur de votre panier.";
+      section.appendChild(paragrapheErreur);
+    }
+
+    /* Supprimer un produit du panier : */
+
+    /* On récupère le bouton supprimer */
+    let supprimerProduit = document.querySelector('.supprimer');
+  
+    function supprimerProduitDuPanier() {
+      supprimerProduit.parentNode.parentNode.remove();
+    }
+    supprimerProduit.addEventListener("click", supprimerProduitDuPanier);
   }
 
 })

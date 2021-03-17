@@ -28,20 +28,33 @@
 
         <h1>Orinoco - Panier</h1>
    
-        <section class="wrapper">
-            <article>
-                <div class="description-produit">
-                    <img src="../assets/img/appareil-photo.jpg" alt="">
-                    <ul>
-                        <li>Couleur 1</li>
-                    </ul>
-                    <span>Référence : #43215561</span>
-                    <strong>199 €</strong>
-                </div>
-            </article>
-
-            <a href="">Commander</a>
-        </section>
+        <section class="wrapper"></section>
+        <form action="orinoco-page-confirmation-commande.html" method="POST">
+            <div>
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" recquired="recquired">
+            </div>
+            <div>
+                <label for="prenom">Prenom</label>
+                <input type="text" name="prenom" recquired>
+            </div>
+            <div>
+                <label for="date_naissance">Date de naissance</label>
+                <input type="date" name="date_naissance" recquired>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" recquired>
+            </div>
+            <div>
+                <label for="telephone">Téléphone</label>
+                <input type="tel" name="telephone">
+            </div>
+            <div>
+                <input type="submit">   
+            </div>
+        </form>
+        <a href="">Commander</a>
         
     </main>
     <footer></footer>

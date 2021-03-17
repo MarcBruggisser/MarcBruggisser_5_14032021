@@ -7,13 +7,14 @@ $tablettePortrait-breakpoint:800px;
 $tablette-breakpoint:980px;
 $desktop-breakpoint:1180px;
 
-// *{outline: none;}
+*{outline: none; border: none;}
 body{margin: 0;}
 section{padding: 1rem;}
 h1, h2, h3{margin: 0;}
 ul{list-style: none; padding: 0; margin: 0;}
 a{text-decoration: none; color: black;}
 img{max-width: 100%; @extend .block;}
+button{cursor: pointer;}
 
 
 // Annonce des classes de mise en forme pour les composants
@@ -72,8 +73,8 @@ header{display: flex; padding: 0 2rem; background-color: $jaune;
 }
 
 /* Composants */
-.bouton{ display: block; margin: auto; max-width: 150px; padding: 1rem; border-radius: 30px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
-    background-color: rosybrown; text-align: center; transition: 0.2s;
+.bouton{ display: block; margin: auto; max-width: 160px; padding: 1rem; border-radius: 30px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+    background-color: rosybrown; text-align: center; transition: 0.2s; font-size: 1rem; cursor: pointer;
     &:hover{transform: scale(1.05);}
 }
 
@@ -111,7 +112,8 @@ main.page-produit{
             }
         }
     } 
-    a{ @extend .bouton;}
+    button, a{ @extend .bouton; margin-bottom: 2rem;}
+    button + p{@extend .alignerCentre;}
 }
 
 /* Page panier */
@@ -121,6 +123,14 @@ main.page-produit{
             & > * {margin-right: 4rem;}
             img{max-width: 150px;}
         }
-        a{@extend .bouton; margin-top: 2rem;}
+        p.paragraphe-erreur{@extend .alignerCentre;}
     }
+    form{
+        & > div {
+            & > * {@extend .block; max-width: 300px; margin: auto;}
+            label{margin-bottom: 0.5rem; @extend .alignerCentre;}
+            input{margin-bottom: 1rem; border: 2px solid black;}
+        }
+    }
+    a{@extend .bouton; margin-top: 2rem;}
 }

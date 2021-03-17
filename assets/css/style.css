@@ -1,6 +1,11 @@
 @charset "UTF-8";
 /* Import des polices */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  outline: none;
+  border: none;
+}
+
 body {
   margin: 0;
 }
@@ -28,7 +33,11 @@ img {
   max-width: 100%;
 }
 
-.block, img, .article-produit a, main.liste-produits section article a, .article-produit a .description-produit strong, main.liste-produits section article a .description-produit strong {
+button {
+  cursor: pointer;
+}
+
+.block, img, .article-produit a, main.liste-produits section article a, .article-produit a .description-produit strong, main.liste-produits section article a .description-produit strong, .page-panier form > div > * {
   display: block;
 }
 
@@ -64,7 +73,7 @@ img {
   text-align: left;
 }
 
-.alignerCentre {
+.alignerCentre, main.page-produit button + p, .page-panier section p.paragraphe-erreur, .page-panier form > div label {
   text-align: center;
 }
 
@@ -163,10 +172,10 @@ header nav ul li {
 }
 
 /* Composants */
-.bouton, main.page-produit a, .page-panier section a {
+.bouton, main.page-produit button, main.page-produit a, .page-panier a {
   display: block;
   margin: auto;
-  max-width: 150px;
+  max-width: 160px;
   padding: 1rem;
   border-radius: 30px;
   -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
@@ -175,9 +184,11 @@ header nav ul li {
   text-align: center;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.bouton:hover, main.page-produit a:hover, .page-panier section a:hover {
+.bouton:hover, main.page-produit button:hover, main.page-produit a:hover, .page-panier a:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -245,6 +256,10 @@ main.page-produit section article .description-produit strong {
   }
 }
 
+main.page-produit button, main.page-produit a {
+  margin-bottom: 2rem;
+}
+
 /* Page panier */
 .page-panier section article .description-produit {
   display: -webkit-box;
@@ -264,7 +279,21 @@ main.page-produit section article .description-produit strong {
   max-width: 150px;
 }
 
-.page-panier section a {
+.page-panier form > div > * {
+  max-width: 300px;
+  margin: auto;
+}
+
+.page-panier form > div label {
+  margin-bottom: 0.5rem;
+}
+
+.page-panier form > div input {
+  margin-bottom: 1rem;
+  border: 2px solid black;
+}
+
+.page-panier a {
   margin-top: 2rem;
 }
 /*# sourceMappingURL=style.css.map */
