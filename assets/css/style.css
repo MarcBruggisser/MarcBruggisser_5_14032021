@@ -73,7 +73,7 @@ button {
   text-align: left;
 }
 
-.alignerCentre, main.page-produit button + p, .page-panier section p.paragraphe-erreur, .page-panier form > div label {
+.alignerCentre, main.page-produit button + p, .page-panier section p.paragraphe-erreur, .page-panier form > div label, .erreur-404 {
   text-align: center;
 }
 
@@ -172,7 +172,7 @@ header nav ul li {
 }
 
 /* Composants */
-.bouton, main.page-produit button, main.page-produit a, .page-panier a {
+.bouton, main.page-produit button, main.page-produit a, .page-panier a, .erreur-404 p a {
   display: block;
   margin: auto;
   max-width: 160px;
@@ -188,7 +188,7 @@ header nav ul li {
   cursor: pointer;
 }
 
-.bouton:hover, main.page-produit button:hover, main.page-produit a:hover, .page-panier a:hover {
+.bouton:hover, main.page-produit button:hover, main.page-produit a:hover, .page-panier a:hover, .erreur-404 p a:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -294,6 +294,11 @@ main.page-produit button, main.page-produit a {
 }
 
 .page-panier a {
+  margin-top: 2rem;
+}
+
+/* Page 404 */
+.erreur-404 p a {
   margin-top: 2rem;
 }
 /*# sourceMappingURL=style.css.map */

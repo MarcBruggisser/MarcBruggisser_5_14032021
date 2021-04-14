@@ -134,3 +134,8 @@ main.page-produit{
     }
     a{@extend .bouton; margin-top: 2rem;}
 }
+
+/* Page 404 */
+.erreur-404{ @extend .alignerCentre;
+    p a{@extend .bouton; margin-top: 2rem;}
+}

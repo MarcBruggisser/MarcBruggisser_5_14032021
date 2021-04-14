@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orinoco - Panier</title>
     <script src="../assets/javascript/script.js" defer></script>
+    <script src="../assets/javascript/page_panier.js" defer></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -32,29 +33,28 @@
         <form action="orinoco-page-confirmation-commande.html" method="POST">
             <div>
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" recquired="recquired">
+                <input type="text" name="nom" required>
             </div>
             <div>
                 <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" recquired>
+                <input type="text" name="prenom" required>
             </div>
             <div>
                 <label for="date_naissance">Date de naissance</label>
-                <input type="date" name="date_naissance" recquired>
+                <input type="date" name="date_naissance" required>
             </div>
             <div>
                 <label for="email">E-mail</label>
-                <input type="email" name="email" recquired>
+                <input type="email" name="email" required>
             </div>
             <div>
                 <label for="telephone">Téléphone</label>
                 <input type="tel" name="telephone">
             </div>
             <div>
-                <input type="submit">   
+                <input type="submit" value="Commander">
             </div>
         </form>
-        <a href="">Commander</a>
         
     </main>
     <footer></footer>
