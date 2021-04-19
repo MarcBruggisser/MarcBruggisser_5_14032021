@@ -119,7 +119,7 @@ main.page-produit{
 /* Page panier */
 .page-panier{
     section{
-        article .description-produit{display: flex; align-items: center; background-color: $jaune;
+        article {display: flex; align-items: center; background-color: $jaune;
             & > * {margin-right: 4rem;}
             img{max-width: 150px;}
         }

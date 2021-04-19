@@ -261,7 +261,7 @@ main.page-produit button, main.page-produit a {
 }
 
 /* Page panier */
-.page-panier section article .description-produit {
+.page-panier section article {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -271,11 +271,11 @@ main.page-produit button, main.page-produit a {
   background-color: #F3E9F1;
 }
 
-.page-panier section article .description-produit > * {
+.page-panier section article > * {
   margin-right: 4rem;
 }
 
-.page-panier section article .description-produit img {
+.page-panier section article img {
   max-width: 150px;
 }
 
