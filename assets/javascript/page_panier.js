@@ -1,6 +1,9 @@
 /* Sur la page panier */
 if(main.classList.contains('page-panier')){
 
+  let boutonFormulaireEnvoi = document.querySelector(".submit");
+  let inputsFormulaire = document.querySelectorAll("form input.champ");
+
   function creerParagrapheErreur() {
     let paragrapheErreur = document.createElement("p");
     paragrapheErreur.classList.add('paragraphe-erreur');  
@@ -10,8 +13,7 @@ if(main.classList.contains('page-panier')){
 
   /* Si la section ne contient pas de produit, alors on empêche l'envoie du formulaire */
   function empecherEnvoiFormulaire() {
-    let boutonFormulaireEnvoi = document.querySelector(".submit");
-    let inputsFormulaire = document.querySelectorAll("form input");
+    
     for (all of inputsFormulaire) {
       all.style.background = "#C0C0C0";
       all.setAttribute("disabled", "disabled");
@@ -21,46 +23,116 @@ if(main.classList.contains('page-panier')){
     });
   }
 
-  /* On récupère l'élément section */
-  let section = document.querySelector('section');
+  /* On récupère l'élément section contenant l'ensemble de notre panier */
+  let section = document.querySelector('section.wrapper');
+  /* On récupère l'élément section faisant le total de notre commande */
+  let totalSection = document.querySelector("section.total-prix");
   
   /* Récupérer les données présentes à l'intérieur du localStorage */
   let panier = JSON.parse(localStorage.getItem("panier"));
 
-  /* Si il y a des valeurs à l'intérieur du panier : pour chaque objet présent à l'intérieur du localStorage */
+  /* Si il y a des valeurs à l'intérieur du panier :  */
   if(panier != null){
+    /* Pour chaque objet présent à l'intérieur du localStorage */
     for (all of panier){
       /* On crée un nouvel article */
       let newArticle = document.createElement("article");
-      /* On crée une balise pour y stocker le nom de l'article */
-      newArticle.innerHTML = `<h2>${all.name}</h2><span class="montant">${all.price} €</span><input class="quantite" type="number" value="1" /><span class="total">${all.price} €</span><button class="supprimer">Supprimer</button>`;
-      /* On crée un select HTML pour que l'utilisateur puisse choisir la quantité d'appareil qu'il veut */
-      // document.createElement("select")
-
+      /* On crée une balise pour y stocker les propriétés de l'article */
+      newArticle.innerHTML = `<img src="${all.imageUrl}"/><h2>${all.name}</h2><span class="montant">${all.price} €</span><input class="quantite" type="number" min="1" value="1" /><span class="total">${all.price} €</span><button class="supprimer">Supprimer</button>`;
       /* On place notre article à l'intérieur de notre section */
       section.appendChild(newArticle);
     }
-  }
-  /* A l'inverse, si le panier est vide, on indique un message à l'utilisateur + on bloque l'envoie du formulaire */
-  else {
-    creerParagrapheErreur();
-    empecherEnvoiFormulaire();
-  }
-  
-  /* Modifier le prix d'une ligne si on augmente la quantité du produit voulu : */
-  let quantite = document.querySelectorAll(".quantite");
-  for (all of quantite){
-    all.addEventListener("click", function(e){
-      /* On récupère la valeur de l'input */
-      let valeurInput = e.target.value;
-      /* On récupère le span indiquant le total */
-      let spanMontantArticle = e.target.parentNode.querySelector(".montant");
-      /* On récupère le textContent de ce span */
-      let spanValeurMontantArticle = spanMontantArticle.textContent.slice(0, -2);
-      let montantTotalArticle = parseInt(spanValeurMontantArticle) * valeurInput;
-      let spanTotalArticle = e.target.parentNode.querySelector(".total");
-      spanTotalArticle.textContent = montantTotalArticle + " €";
-    });
+    /* Afficher le prix total de la commande quand on arrive sur la page panier */
+    let totalParagraphe = document.createElement("p");
+    let spanTotalArticle = document.querySelectorAll(".total");
+    let prixTotalCommande = 0;
+    for(all of spanTotalArticle){
+      prixTotalCommande += parseInt(all.textContent.slice(0, -2));
+    }
+    localStorage.setItem("prix_total_commande", prixTotalCommande);
+    totalParagraphe.textContent = "Total de votre commande : " + prixTotalCommande + " €";
+    totalSection.appendChild(totalParagraphe);
+
+    /* Pour que l'utilisateur puisse passer sa commande, on s'assure que tous les champs du formulaire soient remplis : */
+    boutonFormulaireEnvoi.addEventListener("click", function(event){
+      event.preventDefault();
+      
+      
+      /* On récupère les valeurs du formulaire */
+      let valeursFormulaire = [];
+      /* Pour tous les inputs du formulaire */
+      for(all of inputsFormulaire){
+        let valeur = all.value;
+        valeursFormulaire.push(valeur);
+      }
+
+      /* Inititallement le formulaire possède une valeur true */
+      let formulaireValide = true;
+
+      const regex = /\d/;
+
+      /* Sur les champs prénom, nom et ville, on applique le même test : si la string rentrée contient moins de 4 caractères et contient des valeurs numériques, alors le formulaire n'est plus valide */
+      if(valeursFormulaire[0].length < 3 || regex.test(valeursFormulaire[0]) === true || valeursFormulaire[1].length < 3 || regex.test(valeursFormulaire[1]) === true || valeursFormulaire[3].length < 3 || regex.test(valeursFormulaire[3]) === true){
+        formulaireValide = false;
+      }
+
+      /* Sur le champ adresse postale, on vérifie qu'il y ait au moins 5 caractères */
+      if(valeursFormulaire[2] < 6){
+        formulaireValide = false;
+      }
+
+      /* Sur le champ mail, on vérifie la présence d'un arobase, d'un point et un minimum de 10 caractères */
+      if(!valeursFormulaire[4].includes("@") || !valeursFormulaire[4].includes(".") || valeursFormulaire[4].length < 10 ){
+        formulaireValide = false;
+      }
+
+      /* Si le formulaire est toujours valide, alors on passe à la suite des actions : */
+      if(formulaireValide === true){
+        /* On crée l'objet contact */
+        let contact = {firstName :  valeursFormulaire[0],
+        lastName : valeursFormulaire[1],
+        address : valeursFormulaire[2],
+        city : valeursFormulaire[3],
+        email : valeursFormulaire[4],
+        };
+
+        /* On crée l'objet informationCommande */
+        let informationsCommande = { contact : contact, 
+          products : panier,
+        };
+
+        fetch("http://localhost:3000/api/cameras/order", {method: "POST", headers: {"Content-Type": "application/json"}, body : JSON.stringify(informationsCommande), })
+        .then(async (response) => {
+          try{
+            let contenu = await response.json()
+            localStorage.setItem("numero_commande", contenu.orderId);
+            location.assign("orinoco-page-confirmation-commande.html");
+          } catch(e) {
+            console.log(e);
+          }
+        })
+      }
+
+    })
+    
+    /* Modifier le prix d'une ligne si on augmente la quantité du produit voulu : */
+    let quantite = document.querySelectorAll(".quantite");
+    for (all of quantite){
+      all.addEventListener("click", function(e){
+        /* On récupère la valeur de l'input */
+        let valeurInput = e.target.value;
+        /* On récupère le span indiquant le total */
+        let spanMontantArticle = e.target.parentNode.querySelector(".montant");
+        /* On récupère le textContent de ce span */
+        let spanValeurMontantArticle = spanMontantArticle.textContent.slice(0, -2);
+        /* On multiplie la quantité choisi dans l'input par le prix de l'objet */
+        let montantTotalArticle = parseInt(spanValeurMontantArticle) * valeurInput;
+        /* On récupère le span affiché le montant total de cet article */
+        let spanTotalArticle = e.target.parentNode.querySelector(".total");
+        /* On place dans son textContent la nouvelle valeur du montant total lié au produit */
+        spanTotalArticle.textContent = montantTotalArticle + " €";
+      });
+    }
   }
 
   /* Supprimer un produit du panier : */
@@ -91,7 +163,6 @@ if(main.classList.contains('page-panier')){
         }
       }
 
-      
       /* On supprime l'article produit de la page panier */
       e.target.parentNode.remove();
     });

@@ -13,7 +13,7 @@ if(main.classList.contains('liste-produits')){
       return response.json();
     })
   
-    .then(function(data) {      
+    .then(function(data) {   
       for (all of data) {
         let nouveauProduit = document.createElement("article");
         nouveauProduit.classList.add("article-produit");

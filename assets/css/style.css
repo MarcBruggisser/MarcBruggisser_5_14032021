@@ -73,7 +73,7 @@ button {
   text-align: left;
 }
 
-.alignerCentre, main.page-produit button + p, .page-panier section p.paragraphe-erreur, .page-panier form > div label, .erreur-404 {
+.alignerCentre, main.page-produit button + p, .page-panier section p.paragraphe-erreur, .page-panier form > div label, .page-panier .total-prix, .erreur-404 {
   text-align: center;
 }
 

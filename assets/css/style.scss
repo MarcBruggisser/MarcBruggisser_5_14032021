@@ -132,6 +132,8 @@ main.page-produit{
             input{margin-bottom: 1rem; border: 2px solid black;}
         }
     }
+
+    .total-prix{@extend .alignerCentre;}
     a{@extend .bouton; margin-top: 2rem;}
 }
 

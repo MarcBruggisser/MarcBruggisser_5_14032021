@@ -30,26 +30,27 @@
         <h1>Orinoco - Panier</h1>
    
         <section class="wrapper"></section>
+        <section class="total-prix"></section>
         <form action="orinoco-page-confirmation-commande.html" method="POST">
             <div>
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" required>
+                <label for="firstName">Prenom</label>
+                <input class="champ" type="text" name="firstName" required>
             </div>
             <div>
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" required>
+                <label for="lastName">Nom</label>
+                <input class="champ" type="text" name="lastName" required>
             </div>
             <div>
-                <label for="date_naissance">Date de naissance</label>
-                <input type="date" name="date_naissance" required>
+                <label for="address">Adresse</label>
+                <input class="champ" type="text" name="address" required>
+            </div>
+            <div>
+                <label for="city">Ville</label>
+                <input class="champ" type="text" name="city" required>
             </div>
             <div>
                 <label for="email">E-mail</label>
-                <input type="email" name="email" required>
-            </div>
-            <div>
-                <label for="telephone">Téléphone</label>
-                <input type="tel" name="telephone">
+                <input class="champ" type="email" name="email" required>
             </div>
             <div>
                 <input type="submit" class="submit" value="Commander">
