@@ -31,6 +31,12 @@ if(main.classList.contains('page-panier')){
   /* Récupérer les données présentes à l'intérieur du localStorage */
   let panier = JSON.parse(localStorage.getItem("panier"));
 
+  /* Si le panier est vide : */
+  if(panier === null){
+    creerParagrapheErreur();
+    empecherEnvoiFormulaire();
+  }
+
   /* Si il y a des valeurs à l'intérieur du panier :  */
   if(panier != null){
     /* Pour chaque objet présent à l'intérieur du localStorage */
@@ -104,7 +110,7 @@ if(main.classList.contains('page-panier')){
         fetch("http://localhost:3000/api/cameras/order", {method: "POST", headers: {"Content-Type": "application/json"}, body : JSON.stringify(informationsCommande), })
         .then(async (response) => {
           try{
-            let contenu = await response.json()
+            let contenu = await response.json();
             localStorage.setItem("numero_commande", contenu.orderId);
             location.assign("orinoco-page-confirmation-commande.html");
           } catch(e) {
@@ -157,6 +163,7 @@ if(main.classList.contains('page-panier')){
           /* Si le panier est vide, alors on supprime le panier stocké dans le localStorage + on indique à l'utilisateur sur la page que son panier est vide */
           if(panier.length === 0){
             localStorage.removeItem("panier");
+            localStorage.removeItem("prix_total_commande");
             creerParagrapheErreur();
             empecherEnvoiFormulaire();
           }
@@ -167,6 +174,4 @@ if(main.classList.contains('page-panier')){
       e.target.parentNode.remove();
     });
   }
-
-  
 }

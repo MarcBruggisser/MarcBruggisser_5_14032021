@@ -34,7 +34,7 @@ if(main.classList.contains('page-produit')) {
           main.prepend(nouvelH1);
           /* On rajoute les infos complémentaires de la page qui prend le titre de l'objet */
           let nouveauProduit = document.createElement("article");
-          nouveauProduit.innerHTML = '<img src="' + data.imageUrl +' " alt=""><div class="description-produit"><p>' + data.description + '</p><strong>' + data.price + ' €' + '</strong></div>';
+          nouveauProduit.innerHTML = '<img src="' + data.imageUrl +' " alt=""><div class="description-produit"><p>' + data.description + '</p><strong>' + parseInt(data.price) / 1000 + ' €' + '</strong></div>';
           /* On place notre article produit sur la page */
           document.querySelector(".page-produit section").appendChild(nouveauProduit);
           /* On crée une balise HTML select dans lequelle on va placer nos options de lentilles */
