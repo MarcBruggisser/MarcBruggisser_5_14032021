@@ -12,7 +12,7 @@
         /* On place après ce h1 le paragraphe avec le total et l'id de la commande */
         h1.insertAdjacentElement("afterend", paragrapheIdCommandeEtPrixTotal);
         /* On supprime les informations du localStorage */
-        localStorage.removeItem("prix_total_commande", "panier", "numero_commande");
+        localStorage.removeItem("prix_total_commande");
         localStorage.removeItem("panier");
         localStorage.removeItem("numero_commande");
     }

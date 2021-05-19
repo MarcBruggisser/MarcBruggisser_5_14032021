@@ -44,7 +44,7 @@ if(main.classList.contains('page-panier')){
       /* On crée un nouvel article */
       let newArticle = document.createElement("article");
       /* On crée une balise pour y stocker les propriétés de l'article */
-      newArticle.innerHTML = `<img src="${all.imageUrl}"/><h2>${all.name}</h2><span class="montant">${(all.price / 1000).toFixed(2).toString().replace('.',',')} €</span><input class="quantite" type="number" min="1" max="1" value="1" /><span class="total">${(all.price / 1000).toFixed(2).toString().replace('.',',')} €</span><button class="supprimer">Supprimer</button>`;
+      newArticle.innerHTML = `<img src="${all.imageUrl}"/><h2>${all.name}</h2><span class="montant">${(all.price / 1000).toFixed(2).toString().replace('.',',')} €</span><input class="quantite" type="number" min="1" value="1" /><span class="total">${(all.price / 1000).toFixed(2).toString().replace('.',',')} €</span><button class="supprimer">Supprimer</button>`;
       /* On place notre article à l'intérieur de notre section */
       section.appendChild(newArticle);
     }
@@ -54,7 +54,6 @@ if(main.classList.contains('page-panier')){
     let prixTotalCommande = 0;
     for(all of panier){
       prixTotalCommande += parseFloat(all.price / 1000);
-      console.log(prixTotalCommande);
     }
     localStorage.setItem("prix_total_commande", prixTotalCommande);
     totalParagraphe.textContent = "Total de votre commande : " + prixTotalCommande.toFixed(2).toString().replace('.',',') + " €";
@@ -131,13 +130,13 @@ if(main.classList.contains('page-panier')){
         /* On récupère le span indiquant le total */
         let spanMontantArticle = e.target.parentNode.querySelector(".montant");
         /* On récupère le textContent de ce span */
-        let spanValeurMontantArticle = spanMontantArticle.textContent.slice(0, -2);
+        let spanValeurMontantArticle = spanMontantArticle.textContent.replace(",", ".").slice(0, -2);
         /* On multiplie la quantité choisi dans l'input par le prix de l'objet */
         let montantTotalArticle = parseFloat(spanValeurMontantArticle) * valeurInput;
         /* On récupère le span affiché le montant total de cet article */
         let spanTotalArticle = e.target.parentNode.querySelector(".total");
         /* On place dans son textContent la nouvelle valeur du montant total lié au produit */
-        spanTotalArticle.textContent = montantTotalArticle / 1000 + " €";
+        spanTotalArticle.textContent = montantTotalArticle.toFixed(2).toString().replace(".", ",") + " €";
       });
     }
   }
