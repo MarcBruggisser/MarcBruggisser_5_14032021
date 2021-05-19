@@ -1,7 +1,7 @@
     if (main.classList.contains("page-confirmation-commande")){
 
         /* On récupère dans le localStorage le montant total de la commande */
-        let totalPrixCommande = localStorage.getItem("prix_total_commande");
+        let totalPrixCommande = parseFloat(localStorage.getItem("prix_total_commande")).toFixed(2).toString().replace('.',',');
         /* On récupère dans le localStorage le numéro de la commande */
         let idOrder = localStorage.getItem("numero_commande");
         let paragrapheIdCommandeEtPrixTotal = document.createElement("p");

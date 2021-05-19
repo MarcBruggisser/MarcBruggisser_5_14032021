@@ -17,7 +17,7 @@ if(main.classList.contains('liste-produits')){
       for (all of data) {
         let nouveauProduit = document.createElement("article");
         nouveauProduit.classList.add("article-produit");
-        nouveauProduit.innerHTML = '<a href="pages/orinoco-page-produit.html?_id=' + all._id +'"><img src="' + all.imageUrl +' " alt=""><div class="description-produit"><h2>' + all.name + '</h2><p>' + all.description + '</p><strong>' + parseInt(all.price) / 1000 + ' €' + '</strong></div></a>';
+        nouveauProduit.innerHTML = '<a href="pages/orinoco-page-produit.html?_id=' + all._id +'"><img src="' + all.imageUrl +' " alt=""><div class="description-produit"><h2>' + all.name + '</h2><p>' + all.description + '</p><strong>' + (parseInt(all.price) / 1000).toFixed(2).toString().replace('.',',') + ' €' + '</strong></div></a>';
         document.querySelector(".liste-produits section").appendChild(nouveauProduit);  
       }
     })
